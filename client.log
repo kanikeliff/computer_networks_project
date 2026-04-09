@@ -1,0 +1,4 @@
+2026-04-08 18:20:09 [INFO] client started
+2026-04-08 18:20:09 [INFO] File loaded: {'first_name': 'Elif', 'last_name': 'Kanık', 'age': 21, 'interests': ['Blender', 'Touchdesigner', 'Music', 'Art History']}
+2026-04-08 18:20:09 [INFO] attempt #1
+2026-04-08 18:20:09 [WARNING] http error: 403
