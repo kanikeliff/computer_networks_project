@@ -16,7 +16,7 @@ def is_server_hours():
     now = datetime.now()
     return SERVER_OPEN_HOUR <= now.hour < SERVER_CLOSE_HOUR
 
-# figure out which log file to use before setting up logging
+# to find which log file to use before setting up logging
 if is_server_hours():
     LOG_FILE      = "client_available.log"
     OUTPUT_FILE   = "modified_available.json"
