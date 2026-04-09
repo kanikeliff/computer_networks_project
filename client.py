@@ -5,22 +5,38 @@ import time
 import os
 from datetime import datetime
 
+SERVER_URL  = "https://student-server-production-528a.up.railway.app/submit-file"
+INPUT_FILE  = "original.json"
+RETRY_DELAY = 60
+
+SERVER_OPEN_HOUR  = 9
+SERVER_CLOSE_HOUR = 18
+
+def is_server_hours():
+    now = datetime.now()
+    return SERVER_OPEN_HOUR <= now.hour < SERVER_CLOSE_HOUR
+
+# figure out which log file to use before setting up logging
+if is_server_hours():
+    LOG_FILE      = "client_available.log"
+    OUTPUT_FILE   = "modified_available.json"
+    scenario      = "AVAILABLE"
+else:
+    LOG_FILE      = "client_unavailable.log"
+    OUTPUT_FILE   = "modified_unavailable.json"
+    scenario      = "UNAVAILABLE"
+
 # ─── Logging Setup ───
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
     handlers=[
-        logging.FileHandler("client.log"),
+        logging.FileHandler(LOG_FILE),
         logging.StreamHandler()
     ]
 )
 logger = logging.getLogger(__name__)
-
-SERVER_URL  = "https://student-server-production-528a.up.railway.app/submit-file"
-INPUT_FILE  = "original.json"
-OUTPUT_FILE = "modified.json"
-RETRY_DELAY = 60
 
 
 # PART 1 - JSON file Creation
@@ -57,7 +73,9 @@ def send_request(data):
 # PART 3 - Robustness Requirements
 
 def run_client():
-    logger.info("client started")
+    logger.info("client started — scenario: " + scenario)
+    logger.info("log file: " + LOG_FILE)
+    logger.info("output file: " + OUTPUT_FILE)
 
     if not os.path.exists(INPUT_FILE):
         print("file not found!")
@@ -78,7 +96,7 @@ def run_client():
             modified_data = send_request(original_data)
             save_json(OUTPUT_FILE, modified_data)
             logger.info("success!")
-            print("Done! Check modified.json")
+            print("Done! Check " + OUTPUT_FILE)
             compare_json(original_data, modified_data)
             break
 

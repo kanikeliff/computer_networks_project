@@ -1,0 +1,14 @@
+2026-04-09 12:50:26 [INFO] client started — scenario: AVAILABLE
+2026-04-09 12:50:26 [INFO] log file: client_available.log
+2026-04-09 12:50:26 [INFO] output file: modified_available.json
+2026-04-09 12:50:26 [INFO] File loaded: {'first_name': 'Elif', 'last_name': 'Kanık', 'age': 21, 'interests': ['Blender', 'Touchdesigner', 'Music', 'Art History']}
+2026-04-09 12:50:26 [INFO] attempt #1
+2026-04-09 12:50:27 [INFO] Saved to modified_available.json
+2026-04-09 12:50:27 [INFO] success!
+2026-04-09 12:50:27 [INFO] ADDED: submission_type
+2026-04-09 12:50:27 [INFO] ADDED: server_note
+2026-04-09 12:50:27 [INFO] ADDED: processed_at
+2026-04-09 12:50:27 [INFO] ADDED: original_filename
+2026-04-09 12:50:27 [INFO] ADDED: id
+2026-04-09 12:50:27 [INFO] ADDED: status
+2026-04-09 12:50:27 [INFO] added: ['submission_type', 'server_note', 'processed_at', 'original_filename', 'id', 'status'] | changed: [] | unchanged: ['interests', 'first_name', 'age', 'last_name']
